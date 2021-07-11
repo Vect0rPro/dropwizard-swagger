@@ -1,0 +1,8 @@
+server:
+  type: simple
+  rootPath: /api/*
+  connector:
+    type: http
+    port: 0
+swagger:
+  resourcePackage: in.vectorpro.dropwizard.swagger

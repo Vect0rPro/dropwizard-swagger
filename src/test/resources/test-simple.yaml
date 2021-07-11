@@ -1,0 +1,7 @@
+server:
+  type: simple
+  connector:
+    type: http
+    port: 0
+swagger:
+  resourcePackage: in.vectorpro.dropwizard.swagger
