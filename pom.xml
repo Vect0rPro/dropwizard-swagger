@@ -81,6 +81,7 @@
     </distributionManagement>
 
     <properties>
+        <maven.compiler.release>8</maven.compiler.release>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
 
@@ -93,6 +94,7 @@
         <junit.jupiter.version>5.7.2</junit.jupiter.version>
         <swagger.version>2.0.10</swagger.version>
         <dropwizard.swagger.ui.version>3.51.1</dropwizard.swagger.ui.version>
+        <javassist.version>3.28.0-GA</javassist.version>
     </properties>
 
     <dependencyManagement>
@@ -169,6 +171,12 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
             <version>${junit.jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.javassist</groupId>
+            <artifactId>javassist</artifactId>
+            <version>${javassist.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -266,6 +274,11 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
+                <configuration>
+                    <additionalOptions>
+                        <option>-html5</option>
+                    </additionalOptions>
+                </configuration>
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
