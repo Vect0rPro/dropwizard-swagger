@@ -21,7 +21,7 @@
     <groupId>in.vectorpro.dropwizard</groupId>
     <artifactId>dropwizard-swagger</artifactId>
 
-    <version>2.0.23-1</version>
+    <version>2.0.23-2</version>
     <name>Dropwizard Swagger v2.x and OpenAPI 3.x Integration</name>
     <url>https://github.com/Vect0rPro/dropwizard-swagger</url>
     <description>A simple way to document your REST APIs in Dropwizard using Swagger</description>
@@ -135,7 +135,7 @@
             <version>${dropwizard.version}</version>
         </dependency>
         <dependency>
-            <groupId>in.vectorpro</groupId>
+            <groupId>in.vectorpro.dropwizard</groupId>
             <artifactId>dropwizard-swagger-ui</artifactId>
             <version>${dropwizard.swagger.ui.version}</version>
         </dependency>
@@ -295,7 +295,7 @@
                 <extensions>true</extensions>
                 <configuration>
                     <serverId>ossrh</serverId>
-                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
                     <autoReleaseAfterClose>true</autoReleaseAfterClose>
                 </configuration>
             </plugin>
