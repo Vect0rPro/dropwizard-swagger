@@ -1,4 +1,4 @@
-Dropwizard Swagger 2.x and OpenAPI 3.x Integration
+Dropwizard Swagger Integration
 ==================
 
 A Dropwizard bundle that serves Swagger UI static content and loads Swagger endpoints.
