@@ -1,6 +1,9 @@
 Dropwizard Swagger Integration
 ==================
 
+[![Apache License V2.0](http://img.shields.io/badge/license-Apache%20V2-50ca22.svg)](//github.com/Vect0rPro/dropwizard-swagger/blob/master/LICENSE)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/in.vectorpro.dropwizard/dropwizard-swagger/badge.svg)](https://maven-badges.herokuapp.com/maven-central/in.vectorpro.dropwizard/dropwizard-swagger)
+
 A Dropwizard bundle that serves Swagger UI static content and loads Swagger endpoints.
 
 Current version has been tested with Dropwizard 2.0.23 and Swagger 2.0.10 which supports OpenApi 3.0 specifications
@@ -63,4 +66,4 @@ public void initialize(Bootstrap<YourConfiguration> bootstrap) {
 
 * Open a browser and hit `http://localhost:<your_port>/swagger`
 
-* To see all the properties that can be used to customize Swagger UI see [SwaggerBundleConfiguration.java](src/main/java/com/ossterdam/dropwizard/swagger/SwaggerBundleConfiguration.java)
+* To see all the properties that can be used to customize Swagger UI see [SwaggerBundleConfiguration.java](src/main/java/in/vectorpro/dropwizard/swagger/SwaggerBundleConfiguration.java)
