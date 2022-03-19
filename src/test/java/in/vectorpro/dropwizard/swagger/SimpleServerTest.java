@@ -23,8 +23,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 @ExtendWith(DropwizardExtensionsSupport.class)
 public class SimpleServerTest extends DropwizardTest {
 
-  public static final DropwizardAppExtension<TestConfiguration> RULE =
-      new DropwizardAppExtension<TestConfiguration>(
+  private static final DropwizardAppExtension<TestConfiguration> RULE =
+      new DropwizardAppExtension<>(
           TestApplication.class, ResourceHelpers.resourceFilePath("test-simple.yaml"));
 
   public SimpleServerTest() {

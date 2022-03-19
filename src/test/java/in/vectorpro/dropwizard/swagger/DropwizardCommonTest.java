@@ -40,7 +40,7 @@ public abstract class DropwizardCommonTest {
   }
 
   @Test
-  public void resourceIsAvailable() throws Exception {
+  public void resourceIsAvailable() {
     RestAssured.expect().statusCode(HttpStatus.OK_200).when().get(Path.from(basePath, "test.json"));
   }
 
@@ -54,8 +54,7 @@ public abstract class DropwizardCommonTest {
     }
 
     public static String from(Path basePath, String additionalPath) {
-      final List<String> pathComponents = new ArrayList<>();
-      pathComponents.addAll(basePath.pathComponents);
+      final List<String> pathComponents = new ArrayList<>(basePath.pathComponents);
       pathComponents.add(additionalPath);
       return asString(pathComponents);
     }

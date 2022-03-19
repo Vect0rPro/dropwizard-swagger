@@ -19,7 +19,6 @@ import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 
-/** @author Federico Recio */
 public class TestApplication extends Application<TestConfiguration> {
 
   @Override
@@ -35,7 +34,7 @@ public class TestApplication extends Application<TestConfiguration> {
   }
 
   @Override
-  public void run(TestConfiguration configuration, Environment environment) throws Exception {
+  public void run(TestConfiguration configuration, Environment environment) {
     environment.jersey().register(new TestResource());
   }
 }

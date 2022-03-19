@@ -26,10 +26,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 @ExtendWith(DropwizardExtensionsSupport.class)
-public class  DefaultServerWithContactTest extends DropwizardTest {
+class DefaultServerWithContactTest extends DropwizardTest {
 
-  public static final DropwizardAppExtension<TestConfiguration> RULE =
-      new DropwizardAppExtension<TestConfiguration>(
+  private static final DropwizardAppExtension<TestConfiguration> RULE =
+      new DropwizardAppExtension<>(
           TestApplication.class, ResourceHelpers.resourceFilePath("test-default-contact.yaml"));
 
   public DefaultServerWithContactTest() {
@@ -38,13 +38,13 @@ public class  DefaultServerWithContactTest extends DropwizardTest {
 
   @Test
   @Disabled("passes when ran standalone, but fails inside the suite")
-  public void swaggerHasContactInfo() throws Exception {
+  void swaggerHasContactInfo() {
     RestAssured.expect()
         .statusCode(HttpStatus.OK_200)
         .body(
-            StringContains.containsString("\"name\":\"test-contact-info\""),
-            StringContains.containsString("\"email\":\"test-contact-email@test.com\""),
-            StringContains.containsString("\"url\":\"test-url.contact.com\""))
+            StringContains.containsString("\"name\" : \"test-contact-info\""),
+            StringContains.containsString("\"email\" : \"test-contact-email@test.com\""),
+            StringContains.containsString("\"url\" : \"test-url.contact.com\""))
         .when()
         .get(Path.from(basePath, "swagger.json"));
   }

@@ -23,8 +23,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 @ExtendWith(DropwizardExtensionsSupport.class)
 public class SimpleServerWithApplicationContextPathAndRootPathSetTest extends DropwizardTest {
 
-  public static final DropwizardAppExtension<TestConfiguration> RULE =
-      new DropwizardAppExtension<TestConfiguration>(
+  private static final DropwizardAppExtension<TestConfiguration> RULE =
+      new DropwizardAppExtension<>(
           TestApplication.class,
           ResourceHelpers.resourceFilePath("test-simple-with-context-and-root-path.yaml"));
 

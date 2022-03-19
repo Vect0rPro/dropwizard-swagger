@@ -25,10 +25,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 @ExtendWith(DropwizardExtensionsSupport.class)
-public class DefaultServerWithSwaggerResourceDisabledTest extends DropwizardCommonTest {
+class DefaultServerWithSwaggerResourceDisabledTest extends DropwizardCommonTest {
 
-  public static final DropwizardAppExtension<TestConfiguration> RULE =
-      new DropwizardAppExtension<TestConfiguration>(
+  private static final DropwizardAppExtension<TestConfiguration> RULE =
+      new DropwizardAppExtension<>(
           TestApplication.class,
           ResourceHelpers.resourceFilePath("test-default-without-swagger-resource.yaml"));
 
@@ -37,7 +37,7 @@ public class DefaultServerWithSwaggerResourceDisabledTest extends DropwizardComm
   }
 
   @Test
-  public void swaggerIsAvailable() throws Exception {
+  void swaggerIsAvailable() {
     RestAssured.expect()
         .statusCode(HttpStatus.OK_200)
         .body(StringContains.containsString(TestResource.OPERATION_DESCRIPTION))

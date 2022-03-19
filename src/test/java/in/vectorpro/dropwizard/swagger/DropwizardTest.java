@@ -27,7 +27,7 @@ public abstract class DropwizardTest extends DropwizardCommonTest {
   }
 
   @Test
-  public void swaggerIsAvailable() throws Exception {
+  public void swaggerIsAvailable() {
     RestAssured.expect()
         .statusCode(HttpStatus.OK_200)
         .body(StringContains.containsString(TestResource.OPERATION_DESCRIPTION))

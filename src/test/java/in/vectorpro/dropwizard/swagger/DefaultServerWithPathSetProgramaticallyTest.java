@@ -23,8 +23,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 @ExtendWith(DropwizardExtensionsSupport.class)
 public class DefaultServerWithPathSetProgramaticallyTest extends DropwizardTest {
 
-  public static final DropwizardAppExtension<TestConfiguration> RULE =
-      new DropwizardAppExtension<TestConfiguration>(
+  private static final DropwizardAppExtension<TestConfiguration> RULE =
+      new DropwizardAppExtension<>(
           TestApplicationWithPathSetProgramatically.class,
           ResourceHelpers.resourceFilePath("test-default-with-path-set-programatically.yaml"));
 
