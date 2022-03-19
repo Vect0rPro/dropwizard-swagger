@@ -26,7 +26,7 @@ public abstract class DropwizardNoSwaggerTest extends DropwizardCommonTest {
   }
 
   @Test
-  public void swaggerIsAvailable() throws Exception {
+  public void swaggerIsAvailable() {
     RestAssured.expect()
         .statusCode(HttpStatus.NOT_FOUND_404)
         .when()

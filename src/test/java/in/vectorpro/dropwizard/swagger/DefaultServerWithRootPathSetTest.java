@@ -23,8 +23,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 @ExtendWith(DropwizardExtensionsSupport.class)
 public class DefaultServerWithRootPathSetTest extends DropwizardTest {
 
-  public static final DropwizardAppExtension<TestConfiguration> RULE =
-      new DropwizardAppExtension<TestConfiguration>(
+  private static final DropwizardAppExtension<TestConfiguration> RULE =
+      new DropwizardAppExtension<>(
           TestApplication.class, ResourceHelpers.resourceFilePath("test-default-root-path.yaml"));
 
   public DefaultServerWithRootPathSetTest() {

@@ -24,7 +24,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
-/** @author Federico Recio */
 @Path("/test.json")
 @OpenAPIDefinition(servers = {@Server(url = "/test")})
 public class TestResource {
@@ -32,7 +31,7 @@ public class TestResource {
 
   @GET
   @Operation(description = OPERATION_DESCRIPTION)
-  public Response dummyEndpoint(@QueryParam("dummy") final Optional<String> dummy) {
+  public Response dummyEndpoint(@QueryParam("dummy") final String dummy) {
     return Response.ok().build();
   }
 }

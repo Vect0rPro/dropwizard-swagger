@@ -18,7 +18,6 @@ package in.vectorpro.dropwizard.swagger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.dropwizard.Configuration;
 
-/** @author Federico Recio */
 public class TestConfiguration extends Configuration {
 
   @JsonProperty("swagger")

@@ -25,10 +25,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 @ExtendWith(DropwizardExtensionsSupport.class)
-public class DefaultServerWithNoSwaggerTest extends DropwizardNoSwaggerTest {
+class DefaultServerWithNoSwaggerTest extends DropwizardNoSwaggerTest {
 
-  public static final DropwizardAppExtension<TestConfiguration> RULE =
-      new DropwizardAppExtension<TestConfiguration>(
+  private static final DropwizardAppExtension<TestConfiguration> RULE =
+      new DropwizardAppExtension<>(
           TestApplication.class, ResourceHelpers.resourceFilePath("test-default-disabled.yaml"));
 
   public DefaultServerWithNoSwaggerTest() {
@@ -36,7 +36,7 @@ public class DefaultServerWithNoSwaggerTest extends DropwizardNoSwaggerTest {
   }
 
   @Test
-  public void testEnabledConfig() {
+  void testEnabledConfig() {
     final SwaggerBundleConfiguration config = new SwaggerBundleConfiguration();
 
     // true be default
