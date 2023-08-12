@@ -24,10 +24,13 @@ import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
-import java.util.Arrays;
-import java.util.stream.Collectors;
-import javax.annotation.Nullable;
+import io.swagger.v3.oas.models.servers.Server;
 import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.annotation.Nullable;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * For the meaning of all these properties please refer to Swagger documentation or {@link
@@ -61,6 +64,8 @@ public class SwaggerBundleConfiguration {
   @Nullable private String license;
 
   @Nullable private String licenseUrl;
+
+  @Nullable private List<Server> servers;
 
   private SwaggerViewConfiguration swaggerViewConfiguration = new SwaggerViewConfiguration();
   private SwaggerOAuth2Configuration swaggerOAuth2Configuration = new SwaggerOAuth2Configuration();
@@ -273,6 +278,16 @@ public class SwaggerBundleConfiguration {
     this.readAllResources = include;
   }
 
+  @Nullable
+  public List<Server> getServers() {
+    return servers;
+  }
+
+  @JsonProperty
+  public void setServers(@Nullable List<Server> servers) {
+    this.servers = servers;
+  }
+
   @JsonIgnore
   public SwaggerConfiguration build() {
     if (Strings.isNullOrEmpty(resourcePackage)) {
@@ -290,10 +305,12 @@ public class SwaggerBundleConfiguration {
             .contact(new Contact().email(contactEmail).name(contact).url(contactUrl))
             .license(new License().name(license).url(licenseUrl))
             .termsOfService(termsOfServiceUrl);
+    oas.setInfo(info);
+    oas.setServers(servers);
 
     final String[] exclusions = {SwaggerResource.PATH};
     return new SwaggerConfiguration()
-        .openAPI(oas.info(info))
+        .openAPI(oas)
         .prettyPrint(prettyPrint)
         .readAllResources(readAllResources)
         .ignoredRoutes(Arrays.stream(exclusions).collect(Collectors.toSet()))

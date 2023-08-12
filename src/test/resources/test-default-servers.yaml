@@ -1,0 +1,17 @@
+server:
+  type: default
+  applicationConnectors:
+    - type: http
+      port: 0
+  adminConnectors:
+    - type: http
+      port: 0
+swagger:
+  resourcePackage: in.vectorpro.dropwizard.swagger
+  servers:
+    - url: https://development.gigantic-server.com/v1
+      description: Development server
+    - url: https://staging.gigantic-server.com/v1
+      description: Staging server
+    - url: https://api.gigantic-server.com/v1
+      description: Production server
