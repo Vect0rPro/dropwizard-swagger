@@ -279,6 +279,7 @@ public class SwaggerBundleConfiguration {
   }
 
   @Nullable
+  @JsonProperty
   public List<Server> getServers() {
     return servers;
   }
@@ -305,12 +306,10 @@ public class SwaggerBundleConfiguration {
             .contact(new Contact().email(contactEmail).name(contact).url(contactUrl))
             .license(new License().name(license).url(licenseUrl))
             .termsOfService(termsOfServiceUrl);
-    oas.setInfo(info);
-    oas.setServers(servers);
 
     final String[] exclusions = {SwaggerResource.PATH};
     return new SwaggerConfiguration()
-        .openAPI(oas)
+        .openAPI(oas.info(info).servers(servers))
         .prettyPrint(prettyPrint)
         .readAllResources(readAllResources)
         .ignoredRoutes(Arrays.stream(exclusions).collect(Collectors.toSet()))

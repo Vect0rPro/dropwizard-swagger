@@ -9,9 +9,9 @@ server:
 swagger:
   resourcePackage: in.vectorpro.dropwizard.swagger
   servers:
-    - url: https://development.gigantic-server.com/v1
+    - url: https://development.example.com/
       description: Development server
-    - url: https://staging.gigantic-server.com/v1
+    - url: https://staging.example.com/v1
       description: Staging server
-    - url: https://api.gigantic-server.com/v1
+    - url: https://api.example.com/v1
       description: Production server
