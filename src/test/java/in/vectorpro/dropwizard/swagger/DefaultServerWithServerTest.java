@@ -18,16 +18,26 @@ package in.vectorpro.dropwizard.swagger;
 import io.dropwizard.testing.ResourceHelpers;
 import io.dropwizard.testing.junit5.DropwizardAppExtension;
 import io.dropwizard.testing.junit5.DropwizardExtensionsSupport;
+import io.restassured.RestAssured;
+import org.eclipse.jetty.http.HttpStatus;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 @ExtendWith(DropwizardExtensionsSupport.class)
 class DefaultServerWithServerTest extends DropwizardTest {
 
-  private static final DropwizardAppExtension<TestConfiguration> RULE =
-      new DropwizardAppExtension<>(
-          TestApplication.class, ResourceHelpers.resourceFilePath("test-default-servers.yaml"));
+    private static final DropwizardAppExtension<TestConfiguration> RULE = new DropwizardAppExtension<>(
+            TestApplication.class, ResourceHelpers.resourceFilePath("test-default-servers.yaml"));
 
-  public DefaultServerWithServerTest() {
-    super(RULE.getLocalPort(), "/");
-  }
+    public DefaultServerWithServerTest() {
+        super(RULE.getLocalPort(), "/");
+    }
+
+    @Test
+    void serverStarted() {
+
+        RestAssured.expect().statusCode(HttpStatus.OK_200)
+                .when()
+                .get(Path.from(basePath, "swagger.json"));
+    }
 }
