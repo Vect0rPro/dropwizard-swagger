@@ -10,7 +10,7 @@ Current version has been tested with Dropwizard 2.0.28 and Swagger 2.1.13 which 
 
 Requirements
 --------------
-* Dropwizard 2.x.x
+* Dropwizard 2.0.28
 * Swagger API 2.1.13
 * Swagger UI 4.6.2
 
@@ -23,7 +23,7 @@ Usage
 <dependency>
     <groupId>in.vectorpro.dropwizard</groupId>
     <artifactId>dropwizard-swagger</artifactId>
-    <version>2.0.28-1</version>
+    <version>2.0.28-2</version>
 </dependency>
 ```
 
