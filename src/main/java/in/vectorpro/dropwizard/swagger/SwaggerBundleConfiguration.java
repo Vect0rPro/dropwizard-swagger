@@ -313,6 +313,6 @@ public class SwaggerBundleConfiguration {
         .prettyPrint(prettyPrint)
         .readAllResources(readAllResources)
         .ignoredRoutes(Arrays.stream(exclusions).collect(Collectors.toSet()))
-        .resourcePackages(Arrays.stream(resourcePackage.split(",")).collect(Collectors.toSet()));
+        .resourcePackages(Arrays.stream(resourcePackage.split(",")).map(String::trim).collect(Collectors.toSet()));
   }
 }
