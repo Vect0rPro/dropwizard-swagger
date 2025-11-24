@@ -21,7 +21,6 @@ import io.dropwizard.testing.junit5.DropwizardExtensionsSupport;
 import io.restassured.RestAssured;
 import org.eclipse.jetty.http.HttpStatus;
 import org.hamcrest.core.StringContains;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
@@ -37,7 +36,6 @@ class DefaultServerWithContactTest extends DropwizardTest {
   }
 
   @Test
-  @Disabled("passes when ran standalone, but fails inside the suite")
   void swaggerHasContactInfo() {
     RestAssured.expect()
         .statusCode(HttpStatus.OK_200)

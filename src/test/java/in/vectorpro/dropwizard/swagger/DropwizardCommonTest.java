@@ -18,9 +18,12 @@ package in.vectorpro.dropwizard.swagger;
 import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
 import io.restassured.RestAssured;
+import io.swagger.v3.oas.integration.OpenApiContextLocator;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.commons.lang3.reflect.FieldUtils;
 import org.eclipse.jetty.http.HttpStatus;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -37,6 +40,11 @@ public abstract class DropwizardCommonTest {
   @BeforeEach
   public void setPort() {
     RestAssured.port = port;
+  }
+
+  @AfterAll
+  public static void clearOpenApiContext() throws IllegalAccessException {
+    FieldUtils.writeStaticField(OpenApiContextLocator.class, "instance", null, true);
   }
 
   @Test
