@@ -4,67 +4,52 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Swagger UI</title>
-    <link rel="stylesheet" type="text/css" href="${swaggerAssetsPath}/swagger-ui.css" >
+    <title>${viewConfiguration.pageTitle}</title>
+    <link rel="stylesheet" type="text/css" href="${swaggerAssetsPath}/swagger-ui.css" />
+    <link rel="stylesheet" type="text/css" href="${swaggerAssetsPath}/index.css" />
     <link rel="icon" type="image/png" href="${swaggerAssetsPath}/favicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="${swaggerAssetsPath}/favicon-16x16.png" sizes="16x16" />
-    <style>
-      html
-      {
-        box-sizing: border-box;
-        overflow: -moz-scrollbars-vertical;
-        overflow-y: scroll;
-      }``
-
-      *,
-      *:before,
-      *:after
-      {
-        box-sizing: inherit;
-      }
-
-      body
-      {
-        margin:0;
-        background: #fafafa;
-      }
-    </style>
   </head>
 
   <body>
     <div id="swagger-ui"></div>
-
     <script src="${swaggerAssetsPath}/swagger-ui-bundle.js"> </script>
     <script src="${swaggerAssetsPath}/swagger-ui-standalone-preset.js"> </script>
+    <script src="${swaggerAssetsPath}/swagger-snippet-generator.min.js"> </script>
+
     <script>
     window.onload = function() {
+
+      const snippetTargets = [
+        <#list viewConfiguration.codeSnippetTargets as target>
+          {target: '${target}'}<#if target_has_next>,</#if>
+        </#list>
+      ];
 
       // Begin Swagger UI call region
       const ui = SwaggerUIBundle({
         url: "${contextPath}/swagger.json",
-        <#if validatorUrl??>
-        validatorUrl: "${validatorUrl}",
+        <#if viewConfiguration.validatorUrl??>
+        validatorUrl: "${viewConfiguration.validatorUrl}",
         <#else>
         validatorUrl: null,
         </#if>
         dom_id: "#swagger-ui",
         deepLinking: true,
-        supportedSubmitMethods: ["get", "post", "put", "delete", "patch"],
         docExpansion: "none",
-        jsonEditor: false,
         tagsSorter: "alpha",
         operationsSorter: "alpha",
-        defaultModelRendering: "schema",
-        showRequestHeaders: false,
         presets: [
           SwaggerUIBundle.presets.apis,
           SwaggerUIStandalonePreset
         ],
         plugins: [
-          SwaggerUIBundle.plugins.DownloadUrl
+          SwaggerUIBundle.plugins.DownloadUrl,
+          SwaggerSnippetGenerator(snippetTargets)
         ],
         oauth2RedirectUrl: window.location.protocol + "//" + window.location.host + "${contextPath}/oauth2-redirect.html",
-        layout: "StandaloneLayout"
+        layout: "StandaloneLayout",
+        requestSnippetsEnabled: true
       });
 
       ui.initOAuth({

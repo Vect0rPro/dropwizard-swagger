@@ -15,6 +15,8 @@
  */
 package in.vectorpro.dropwizard.swagger;
 
+import com.google.common.collect.Sets;
+import java.util.Set;
 import javax.annotation.Nullable;
 
 /**
@@ -25,15 +27,22 @@ public class SwaggerViewConfiguration {
 
   private static final String DEFAULT_TITLE = "Swagger UI";
   private static final String DEFAULT_TEMPLATE = "index.ftl";
+  private static final Set<String> DEFAULT_CODE_SNIPPET_TARGETS = Sets.newHashSet("shell_wget", "python_requests",
+            "java_okhttp", "node_request", "go_native");
 
-  @Nullable private String pageTitle;
+  @Nullable
+  private String pageTitle;
 
-  @Nullable private String templateUrl;
+  @Nullable
+  private String templateUrl;
 
-  @Nullable private String validatorUrl;
+  @Nullable
+  private String validatorUrl;
 
   private boolean showApiSelector;
   private boolean showAuth;
+
+  private Set<String> codeSnippetTargets;
 
   public SwaggerViewConfiguration() {
     this.pageTitle = DEFAULT_TITLE;
@@ -41,6 +50,7 @@ public class SwaggerViewConfiguration {
     this.validatorUrl = null;
     this.showApiSelector = true;
     this.showAuth = true;
+    this.codeSnippetTargets = DEFAULT_CODE_SNIPPET_TARGETS;
   }
 
   @Nullable
@@ -84,5 +94,23 @@ public class SwaggerViewConfiguration {
 
   public void setShowAuth(boolean showAuth) {
     this.showAuth = showAuth;
+  }
+
+  public Set<String> getCodeSnippetTargets() {
+    return codeSnippetTargets;
+  }
+
+  public void setCodeSnippetTargets(Set<String> codeSnippetTargets) {
+
+    this.codeSnippetTargets = codeSnippetTargets;
+
+    // Syntax highlighting with swagger snippet generator js works only if node is included in the snippet targets
+    // Otherwise snippets are generated without syntax highlighting
+    // Hence identifying if node is missing and adding it to the set
+    final boolean noTargetStartsWithNode = this.codeSnippetTargets.stream()
+            .noneMatch(target -> target.startsWith("node"));
+    if (noTargetStartsWithNode) {
+        this.codeSnippetTargets.add("node_request");
+    }
   }
 }
