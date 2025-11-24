@@ -86,32 +86,9 @@ public class SwaggerView extends View {
     return contextPath;
   }
 
-  /**
-   * Returns the location of the validator URL or null to disable
-   *
-   * @return String
-   */
-  @Nullable
-  public String getValidatorUrl() {
-    return viewConfiguration.getValidatorUrl();
-  }
-
-  /**
-   * Returns whether to display the authorization input boxes
-   *
-   * @return String
-   */
-  public boolean getShowAuth() {
-    return viewConfiguration.isShowAuth();
-  }
-
-  /**
-   * Returns whether to display the swagger spec selector
-   *
-   * @return boolean
-   */
-  public boolean getShowApiSelector() {
-    return viewConfiguration.isShowApiSelector();
+  /** @return {@link SwaggerViewConfiguration} containing every properties to customize swagger */
+  public SwaggerViewConfiguration getViewConfiguration() {
+    return viewConfiguration;
   }
 
   /** @return {@link SwaggerOAuth2Configuration} containing every properties to init oauth2 */
