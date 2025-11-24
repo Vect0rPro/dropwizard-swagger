@@ -286,15 +286,32 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>org.sonatype.plugins</groupId>
-                <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>1.6.12</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <serverId>ossrh</serverId>
-                    <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
-                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
-                </configuration>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>3.6.1</version>
+                <executions>
+                    <execution>
+                        <id>enforce</id>
+                        <configuration>
+                            <fail>true</fail>
+                            <rules>
+                                <requireFilesExist>
+                                    <files>
+                                        <file>LICENSE</file>
+                                    </files>
+                                </requireFilesExist>
+                                <requireFileChecksum>
+                                    <file>LICENSE</file>
+                                    <checksum>52965201dab336f278d9ca6786e36b69cd0db6fbbac88d05923004518fe4166d</checksum>
+                                    <type>sha256</type>
+                                </requireFileChecksum>
+                            </rules>
+                        </configuration>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
