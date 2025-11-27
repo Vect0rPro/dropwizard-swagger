@@ -77,4 +77,4 @@ public void initialize(Bootstrap<YourConfiguration> bootstrap) {
 
 * Open a browser and hit `http://localhost:<your_port>/swagger`
 
-* To see all the properties that can be used to customize Swagger UI see [SwaggerBundleConfiguration.java](src/main/java/in/vectorpro/dropwizard/swagger/SwaggerBundleConfiguration.java)
+* To see all the properties that can be used to customize Swagger UI see [SwaggerBundleConfiguration.java](dropwizard-swagger/src/main/java/in/vectorpro/dropwizard/swagger/SwaggerBundleConfiguration.java)
