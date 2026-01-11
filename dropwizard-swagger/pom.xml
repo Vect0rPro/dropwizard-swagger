@@ -22,7 +22,7 @@
     <parent>
         <groupId>in.vectorpro.dropwizard</groupId>
         <artifactId>dropwizard-swagger-parent</artifactId>
-        <version>2.1.12-2</version>
+        <version>5.0.0-1-rc.1</version>
     </parent>
 
     <artifactId>dropwizard-swagger</artifactId>
@@ -113,8 +113,14 @@
         </dependency>
         <dependency>
             <groupId>io.swagger.core.v3</groupId>
-            <artifactId>swagger-jaxrs2</artifactId>
+            <artifactId>swagger-jaxrs2-jakarta</artifactId>
             <version>${swagger.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>snakeyaml</artifactId>
+                    <groupId>org.yaml</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>io.rest-assured</groupId>

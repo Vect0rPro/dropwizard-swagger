@@ -15,12 +15,12 @@
  */
 package in.vectorpro.dropwizard.swagger;
 
-import io.dropwizard.Configuration;
-import io.dropwizard.ConfiguredBundle;
+import io.dropwizard.core.Configuration;
+import io.dropwizard.core.ConfiguredBundle;
 import io.dropwizard.assets.AssetsBundle;
-import io.dropwizard.setup.Bootstrap;
-import io.dropwizard.setup.Environment;
-import io.dropwizard.views.ViewBundle;
+import io.dropwizard.core.setup.Bootstrap;
+import io.dropwizard.core.setup.Environment;
+import io.dropwizard.views.common.ViewBundle;
 import io.swagger.v3.core.converter.ModelConverters;
 import io.swagger.v3.core.jackson.ModelResolver;
 import io.swagger.v3.jaxrs2.SwaggerSerializers;

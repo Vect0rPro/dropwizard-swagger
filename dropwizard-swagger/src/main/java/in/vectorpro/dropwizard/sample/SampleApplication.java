@@ -18,7 +18,6 @@ package in.vectorpro.dropwizard.sample;
 import com.google.common.collect.Lists;
 import in.vectorpro.dropwizard.swagger.SwaggerBundle;
 import in.vectorpro.dropwizard.swagger.SwaggerBundleConfiguration;
-import io.dropwizard.Application;
 import io.dropwizard.auth.AuthDynamicFeature;
 import io.dropwizard.auth.AuthFilter;
 import io.dropwizard.auth.AuthValueFactoryProvider;
@@ -26,8 +25,9 @@ import io.dropwizard.auth.PrincipalImpl;
 import io.dropwizard.auth.basic.BasicCredentialAuthFilter;
 import io.dropwizard.auth.chained.ChainedAuthFilter;
 import io.dropwizard.auth.oauth.OAuthCredentialAuthFilter;
-import io.dropwizard.setup.Bootstrap;
-import io.dropwizard.setup.Environment;
+import io.dropwizard.core.Application;
+import io.dropwizard.core.setup.Bootstrap;
+import io.dropwizard.core.setup.Environment;
 import java.util.List;
 import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 
@@ -52,7 +52,7 @@ public class SampleApplication extends Application<SampleConfiguration> {
             return configuration.getSwagger();
           }
         });
-  };
+  }
 
   @Override
   public void run(SampleConfiguration configuration, Environment environment) throws Exception {

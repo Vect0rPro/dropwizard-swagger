@@ -17,16 +17,16 @@ package in.vectorpro.dropwizard.swagger;
 
 import io.swagger.v3.jaxrs2.integration.resources.BaseOpenApiResource;
 import io.swagger.v3.oas.annotations.Operation;
-import javax.servlet.ServletConfig;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.Application;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.HttpHeaders;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriInfo;
+import jakarta.servlet.ServletConfig;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.Application;
+import jakarta.ws.rs.core.Context;
+import jakarta.ws.rs.core.HttpHeaders;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.UriInfo;
 
 @Path("/swagger.{type:json|yaml}")
 public class BackwardsCompatibleSwaggerResource extends BaseOpenApiResource {
