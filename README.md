@@ -6,12 +6,12 @@ Dropwizard Swagger Integration
 
 A Dropwizard bundle that serves Swagger UI static content and loads Swagger endpoints.
 
-Current version has been tested with Dropwizard 2.1.12 and Swagger 2.2.2 which supports OpenApi 3.0 specifications
+Current version has been tested with Dropwizard 5.0.0 and Swagger 2.2.41 which supports OpenApi 3.0 specifications
 
 Requirements
 --------------
-* Dropwizard 2.1.12
-* Swagger API 2.2.2
+* Dropwizard 5.0.0
+* Swagger API 2.2.41
 * Swagger UI 5.27.0
 
 Usage
@@ -23,7 +23,7 @@ Usage
 <dependency>
     <groupId>in.vectorpro.dropwizard</groupId>
     <artifactId>dropwizard-swagger</artifactId>
-    <version>2.1.12-1</version>
+    <version>5.0.0-1-rc.1</version>
 </dependency>
 ```
 

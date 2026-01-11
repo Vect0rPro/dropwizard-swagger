@@ -21,7 +21,7 @@
 
     <groupId>in.vectorpro.dropwizard</groupId>
     <artifactId>dropwizard-swagger-parent</artifactId>
-    <version>2.1.12-2</version>
+    <version>5.0.0-1-rc.1</version>
 
     <packaging>pom</packaging>
 
@@ -87,10 +87,11 @@
         <file.encoding>UTF-8</file.encoding>
         <enforcer.skip>false</enforcer.skip>
 
-        <dropwizard.version>2.1.12</dropwizard.version>
+        <dropwizard.version>5.0.0</dropwizard.version>
+        <jackson.version>2.20.0</jackson.version>
         <guava.version>33.5.0-jre</guava.version>
         <junit.jupiter.version>5.10.5</junit.jupiter.version>
-        <swagger.version>2.2.2</swagger.version>
+        <swagger.version>2.2.41</swagger.version>
         <dropwizard.swagger.ui.version>5.27.0</dropwizard.swagger.ui.version>
         <javassist.version>3.30.2-GA</javassist.version>
     </properties>
@@ -106,6 +107,13 @@
                 <groupId>io.dropwizard</groupId>
                 <artifactId>dropwizard-bom</artifactId>
                 <version>${dropwizard.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson</groupId>
+                <artifactId>jackson-bom</artifactId>
+                <version>${jackson.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

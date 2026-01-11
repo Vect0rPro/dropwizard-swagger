@@ -17,7 +17,7 @@ package in.vectorpro.dropwizard.swagger;
 
 import com.google.common.collect.Sets;
 import java.util.Set;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 
 /**
  * Contains all configurable parameters required to render the SwaggerUI View from the default

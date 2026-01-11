@@ -15,9 +15,9 @@
  */
 package in.vectorpro.dropwizard.swagger;
 
-import io.dropwizard.views.View;
+import io.dropwizard.views.common.View;
 import java.nio.charset.StandardCharsets;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 
 /**
  * Serves the content of Swagger's index page which has been "templatized" to support replacing the

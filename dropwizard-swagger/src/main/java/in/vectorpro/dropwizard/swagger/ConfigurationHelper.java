@@ -15,10 +15,10 @@
  */
 package in.vectorpro.dropwizard.swagger;
 
-import io.dropwizard.Configuration;
-import io.dropwizard.server.DefaultServerFactory;
-import io.dropwizard.server.ServerFactory;
-import io.dropwizard.server.SimpleServerFactory;
+import io.dropwizard.core.Configuration;
+import io.dropwizard.core.server.DefaultServerFactory;
+import io.dropwizard.core.server.ServerFactory;
+import io.dropwizard.core.server.SimpleServerFactory;
 import java.util.Optional;
 
 /**
