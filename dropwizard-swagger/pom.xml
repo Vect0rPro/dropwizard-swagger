@@ -22,7 +22,7 @@
     <parent>
         <groupId>in.vectorpro.dropwizard</groupId>
         <artifactId>dropwizard-swagger-parent</artifactId>
-        <version>5.0.0-1-rc.1</version>
+        <version>5.0.0-1-rc.2</version>
     </parent>
 
     <artifactId>dropwizard-swagger</artifactId>
