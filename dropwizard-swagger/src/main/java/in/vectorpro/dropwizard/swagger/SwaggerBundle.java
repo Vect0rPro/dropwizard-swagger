@@ -42,8 +42,10 @@ public abstract class SwaggerBundle<T extends Configuration> implements Configur
 
   @Override
   public void run(T configuration, Environment environment) throws Exception {
+
     final SwaggerBundleConfiguration swaggerBundleConfiguration =
         getSwaggerBundleConfiguration(configuration);
+
     if (swaggerBundleConfiguration == null) {
       throw new IllegalStateException(
           "You need to provide an instance of SwaggerBundleConfiguration");
@@ -55,6 +57,7 @@ public abstract class SwaggerBundle<T extends Configuration> implements Configur
 
     final ConfigurationHelper configurationHelper =
         new ConfigurationHelper(configuration, swaggerBundleConfiguration);
+
     new AssetsBundle(
             "/swagger-static", configurationHelper.getSwaggerUriPath(), null, "swagger-assets")
         .run(configuration, environment);
@@ -67,20 +70,19 @@ public abstract class SwaggerBundle<T extends Configuration> implements Configur
         .run(configuration, environment);
 
     final SwaggerConfiguration oasConfiguration = swaggerBundleConfiguration.build();
-    new JaxrsOpenApiContextBuilder().openApiConfiguration(oasConfiguration).buildContext(true);
+    new JaxrsOpenApiContextBuilder<>().openApiConfiguration(oasConfiguration).buildContext(true);
 
     environment.jersey().register(new OpenApiResource());
     environment.jersey().register(new BackwardsCompatibleSwaggerResource());
     environment.jersey().register(new SwaggerSerializers());
+    
     if (swaggerBundleConfiguration.isIncludeSwaggerResource()) {
       environment
           .jersey()
           .register(
               new SwaggerResource(
-                  configurationHelper.getUrlPattern(),
                   swaggerBundleConfiguration.getSwaggerViewConfiguration(),
-                  swaggerBundleConfiguration.getSwaggerOAuth2Configuration(),
-                  swaggerBundleConfiguration.getContextRoot()));
+                  swaggerBundleConfiguration.getSwaggerOAuth2Configuration()));
     }
   }
 
