@@ -22,20 +22,51 @@
   <head>
     <meta charset="UTF-8">
     <title>${viewConfiguration.pageTitle}</title>
-    <link rel="stylesheet" type="text/css" href="${swaggerAssetsPath}/swagger-ui.css" />
-    <link rel="stylesheet" type="text/css" href="${swaggerAssetsPath}/index.css" />
-    <link rel="icon" type="image/png" href="${swaggerAssetsPath}/favicon-32x32.png" sizes="32x32" />
-    <link rel="icon" type="image/png" href="${swaggerAssetsPath}/favicon-16x16.png" sizes="16x16" />
+    <script>
+      // Calculate contextPath dynamically from browser URL
+      // Example: example.com/path1/swagger -> contextPath = /path1
+      (function() {
+        var pathname = window.location.pathname;
+        // Remove trailing slash if present (IE11 compatible)
+        if (pathname.charAt(pathname.length - 1) === '/') {
+          pathname = pathname.slice(0, -1);
+        }
+        // Remove last segment (e.g., "swagger")
+        var lastSlashIndex = pathname.lastIndexOf('/');
+        var contextPath = lastSlashIndex > 0 ? pathname.substring(0, lastSlashIndex) : '';
+        // Calculate swaggerAssetsPath
+        var swaggerAssetsPath = contextPath + '/swagger-static';
+
+        // Calculate dynamic server URL for API requests
+        var dynamicServerUrl = window.location.origin + contextPath;
+
+        // Store in global scope for later use
+        window.swaggerContextPath = contextPath;
+        window.swaggerAssetsPath = swaggerAssetsPath;
+        window.swaggerDynamicServerUrl = dynamicServerUrl;
+
+        // Dynamically write stylesheet and favicon links
+        document.write('<link rel="stylesheet" type="text/css" href="' + swaggerAssetsPath + '/swagger-ui.css" />');
+        document.write('<link rel="stylesheet" type="text/css" href="' + swaggerAssetsPath + '/index.css" />');
+        document.write('<link rel="icon" type="image/png" href="' + swaggerAssetsPath + '/favicon-32x32.png" sizes="32x32" />');
+        document.write('<link rel="icon" type="image/png" href="' + swaggerAssetsPath + '/favicon-16x16.png" sizes="16x16" />');
+      })();
+    </script>
   </head>
 
   <body>
     <div id="swagger-ui"></div>
-    <script src="${swaggerAssetsPath}/swagger-ui-bundle.js"> </script>
-    <script src="${swaggerAssetsPath}/swagger-ui-standalone-preset.js"> </script>
-    <script src="${swaggerAssetsPath}/swagger-snippet-generator.min.js"> </script>
+    <script>
+      // Dynamically write script tags using calculated swaggerAssetsPath
+      document.write('<script src="' + window.swaggerAssetsPath + '/swagger-ui-bundle.js"><\/script>');
+      document.write('<script src="' + window.swaggerAssetsPath + '/swagger-ui-standalone-preset.js"><\/script>');
+      document.write('<script src="' + window.swaggerAssetsPath + '/swagger-snippet-generator.min.js"><\/script>');
+    </script>
 
     <script>
     window.onload = function() {
+      var contextPath = window.swaggerContextPath;
+      var dynamicServerUrl = window.swaggerDynamicServerUrl;
 
       const snippetTargets = [
         <#list viewConfiguration.codeSnippetTargets as target>
@@ -45,7 +76,7 @@
 
       // Begin Swagger UI call region
       const ui = SwaggerUIBundle({
-        url: "${contextPath}/swagger.json",
+        url: contextPath + "/swagger.json",
         <#if viewConfiguration.validatorUrl??>
         validatorUrl: "${viewConfiguration.validatorUrl}",
         <#else>
@@ -64,9 +95,39 @@
           SwaggerUIBundle.plugins.DownloadUrl,
           SwaggerSnippetGenerator(snippetTargets)
         ],
-        oauth2RedirectUrl: window.location.protocol + "//" + window.location.host + "${contextPath}/oauth2-redirect.html",
+        oauth2RedirectUrl: window.location.protocol + "//" + window.location.host + contextPath + "/oauth2-redirect.html",
         layout: "StandaloneLayout",
-        requestSnippetsEnabled: true
+        requestSnippetsEnabled: true,
+        // Callback when Swagger UI finishes loading the spec
+        onComplete: function() {
+          try {
+            // Get the current spec from Swagger UI's state
+            var state = ui.getState();
+            if (state && state.getIn) {
+              var specJs = state.getIn(['spec', 'json']);
+              if (specJs && specJs.toJS) {
+                var spec = specJs.toJS();
+                if (spec) {
+                  // Create dynamic server entry based on current browser URL
+                  var dynamicServer = { url: dynamicServerUrl };
+                  // Get existing servers or empty array
+                  var existingServers = Array.isArray(spec.servers) ? spec.servers : [];
+                  // Only add if not already present
+                  var alreadyExists = existingServers.some(function(s) { return s.url === dynamicServerUrl; });
+                  if (!alreadyExists) {
+                    // Prepend dynamic server to make it the default selection
+                    var newServers = [dynamicServer].concat(existingServers);
+                    // Update spec with new servers
+                    spec.servers = newServers;
+                    ui.specActions.updateJsonSpec(spec);
+                  }
+                }
+              }
+            }
+          } catch (e) {
+            console.warn('Failed to inject dynamic server URL:', e);
+          }
+        }
       });
 
       ui.initOAuth({

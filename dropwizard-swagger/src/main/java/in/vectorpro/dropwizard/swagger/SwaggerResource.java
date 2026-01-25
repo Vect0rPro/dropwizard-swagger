@@ -25,35 +25,21 @@ import javax.ws.rs.core.MediaType;
 @Path(PATH)
 @Produces(MediaType.TEXT_HTML)
 public class SwaggerResource {
+
   static final String PATH = "/swagger";
+  
   private final SwaggerViewConfiguration viewConfiguration;
   private final SwaggerOAuth2Configuration oAuth2Configuration;
-  private final String contextRoot;
-  private final String urlPattern;
 
   public SwaggerResource(
-      String urlPattern,
       SwaggerViewConfiguration viewConfiguration,
       SwaggerOAuth2Configuration oAuth2Configuration) {
-    this.urlPattern = urlPattern;
     this.viewConfiguration = viewConfiguration;
     this.oAuth2Configuration = oAuth2Configuration;
-    this.contextRoot = "/";
-  }
-
-  public SwaggerResource(
-      String urlPattern,
-      SwaggerViewConfiguration viewConfiguration,
-      SwaggerOAuth2Configuration oAuth2Configuration,
-      String contextRoot) {
-    this.viewConfiguration = viewConfiguration;
-    this.oAuth2Configuration = oAuth2Configuration;
-    this.urlPattern = urlPattern;
-    this.contextRoot = contextRoot;
   }
 
   @GET
   public SwaggerView get() {
-    return new SwaggerView(contextRoot, urlPattern, viewConfiguration, oAuth2Configuration);
+    return new SwaggerView(viewConfiguration, oAuth2Configuration);
   }
 }
