@@ -7,3 +7,4 @@ target
 /dep
 out
 .DS_Store
+.vscode
