@@ -9,7 +9,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <parent>
         <groupId>in.vectorpro.dropwizard</groupId>
         <artifactId>dropwizard-swagger-parent</artifactId>
-        <version>2.1.12-3</version>
+        <version>2.1.12-4</version>
     </parent>
 
     <artifactId>dropwizard-swagger-bom</artifactId>
@@ -73,7 +73,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
             <dependency>
                 <groupId>in.vectorpro.dropwizard</groupId>
                 <artifactId>dropwizard-swagger</artifactId>
-                <version>2.1.12-3</version>
+                <version>2.1.12-4</version>
             </dependency>
             <dependency>
                 <groupId>in.vectorpro.dropwizard</groupId>
@@ -83,27 +83,27 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
             <dependency>
                 <groupId>io.swagger.core.v3</groupId>
                 <artifactId>swagger-annotations</artifactId>
-                <version>2.2.2</version>
+                <version>2.2.52</version>
             </dependency>
             <dependency>
                 <groupId>io.swagger.core.v3</groupId>
                 <artifactId>swagger-core</artifactId>
-                <version>2.2.2</version>
+                <version>2.2.52</version>
             </dependency>
             <dependency>
                 <groupId>io.swagger.core.v3</groupId>
                 <artifactId>swagger-integration</artifactId>
-                <version>2.2.2</version>
+                <version>2.2.52</version>
             </dependency>
             <dependency>
                 <groupId>io.swagger.core.v3</groupId>
                 <artifactId>swagger-jaxrs2</artifactId>
-                <version>2.2.2</version>
+                <version>2.2.52</version>
             </dependency>
             <dependency>
                 <groupId>io.swagger.core.v3</groupId>
                 <artifactId>swagger-models</artifactId>
-                <version>2.2.2</version>
+                <version>2.2.52</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
